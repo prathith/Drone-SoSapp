@@ -19,12 +19,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MainActivity extends  Activity implements LocationListener {
+
     Button button1;
     Button button2;
     Button button3;
-
+    Button button4;
 
     protected LocationManager locationManager;
     protected LocationListener locationListener;
@@ -41,7 +45,9 @@ public class MainActivity extends  Activity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Status");
+        myRef.setValue("Healthy");
         //Getting the edittext and button instance
         txtLat = (TextView) findViewById(R.id.location);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -60,7 +66,9 @@ public class MainActivity extends  Activity implements LocationListener {
         button1 = (Button) findViewById(R.id.pol);
         button2 = (Button) findViewById(R.id.amb);
         button3 = (Button) findViewById(R.id.fire);
-        //address for the address bar
+        button4 = (Button) findViewById(R.id.send);
+
+                //address for the address bar
 
         //Performing action on button click
         button1.setOnClickListener(new View.OnClickListener() {
@@ -129,10 +137,50 @@ public class MainActivity extends  Activity implements LocationListener {
 
         });
 
+        button3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:101"));
+                if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    Activity#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for Activity#requestPermissions for more details.
+                    return;
+                }
+                startActivity(callIntent);
+            }
+
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Status");
+                myRef.setValue("Emergency");
+
+
+            }
+
+        });
+
 
     }
     @Override
     public void onLocationChanged(Location location) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Latitude");
+        myRef.setValue("Latitude:" + location.getLatitude());
+        myRef = database.getReference("Longitude");
+        myRef.setValue("Longitude:" + location.getLongitude());
         txtLat = (TextView) findViewById(R.id.location);
         txtLat.setText("Latitude:" + location.getLatitude() + ",\nLongitude:" + location.getLongitude());
     }
