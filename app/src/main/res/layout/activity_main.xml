@@ -65,8 +65,8 @@
         android:layout_marginStart="289dp"
         android:layout_marginTop="270dp"
         android:layout_marginEnd="34dp"
-        android:background="@android:color/holo_red_light"
         android:layout_marginBottom="413dp"
+        android:background="@android:color/holo_red_light"
 
         android:text="FIRE"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,7 +107,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="213dp"
+        android:layout_marginTop="230dp"
         android:src="@drawable/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,6 +115,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="584dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginBottom="99dp"
+                android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="286dp"
+        android:layout_marginTop="584dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="99dp"
+                android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

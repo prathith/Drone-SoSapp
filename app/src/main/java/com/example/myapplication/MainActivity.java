@@ -29,7 +29,8 @@ public class MainActivity extends  Activity implements LocationListener {
     Button button2;
     Button button3;
     Button button4;
-
+    Button button5;
+    Button button6;
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected Context context;
@@ -67,7 +68,8 @@ public class MainActivity extends  Activity implements LocationListener {
         button2 = (Button) findViewById(R.id.amb);
         button3 = (Button) findViewById(R.id.fire);
         button4 = (Button) findViewById(R.id.send);
-
+        button5 = (Button) findViewById(R.id.login);
+        button6 = (Button) findViewById(R.id.register);
                 //address for the address bar
 
         //Performing action on button click
@@ -170,6 +172,27 @@ public class MainActivity extends  Activity implements LocationListener {
 
             }
 
+        });
+
+
+        button5.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(),login.class);
+                startActivityForResult(myIntent,0);
+
+
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(),register.class);
+                startActivityForResult(myIntent,0);
+
+
+            }
         });
 
 
