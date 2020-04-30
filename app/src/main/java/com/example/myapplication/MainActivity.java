@@ -19,12 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends  Activity implements LocationListener {
-
+    FirebaseAuth fAuth;
     Button button1;
     Button button2;
     Button button3;
@@ -46,9 +47,6 @@ public class MainActivity extends  Activity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Status");
-        myRef.setValue("Healthy");
         //Getting the edittext and button instance
         txtLat = (TextView) findViewById(R.id.location);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -68,11 +66,39 @@ public class MainActivity extends  Activity implements LocationListener {
         button2 = (Button) findViewById(R.id.amb);
         button3 = (Button) findViewById(R.id.fire);
         button4 = (Button) findViewById(R.id.send);
-        button5 = (Button) findViewById(R.id.login);
-        button6 = (Button) findViewById(R.id.register);
+        //Button login_btn = findViewById(R.id.log_btn);
+       // Button register_btn = findViewById(R.id.res_btn);
+        Button logout_btn = findViewById(R.id.logout);
+        fAuth = FirebaseAuth.getInstance();
+        if(fAuth.getCurrentUser() != null){
+            //login_btn.setVisibility(View.GONE);
+            //register_btn.setVisibility((View.GONE));
+            logout_btn.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            logout_btn.setVisibility(View.GONE);
+            startActivity(new Intent(getApplicationContext(),login.class));
+            finish();
+        }
+       // button5 = (Button) findViewById(R.id.login);
+       // button6 = (Button) findViewById(R.id.register);
                 //address for the address bar
 
         //Performing action on button click
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String userID = fAuth.getCurrentUser().getUid();
+                DatabaseReference myRef = database.getReference(userID);
+                myRef.child("Status").setValue("healthy");
+                FirebaseAuth.getInstance().signOut();//logout
+                startActivity(new Intent(getApplicationContext(),login.class));
+                finish();
+
+            }
+        });
         button1.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -166,15 +192,14 @@ public class MainActivity extends  Activity implements LocationListener {
             @Override
             public void onClick(View arg0) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Status");
-                myRef.setValue("Emergency");
-
-
+                String userID = fAuth.getCurrentUser().getUid();
+                DatabaseReference myRef = database.getReference(userID);
+                myRef.child("Status").setValue("Emergency");
             }
 
         });
 
-
+/*
         button5.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -195,15 +220,17 @@ public class MainActivity extends  Activity implements LocationListener {
             }
         });
 
-
+*/
     }
     @Override
     public void onLocationChanged(Location location) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Latitude");
-        myRef.setValue("Latitude:" + location.getLatitude());
-        myRef = database.getReference("Longitude");
-        myRef.setValue("Longitude:" + location.getLongitude());
+     if(fAuth.getCurrentUser()!=null) {
+         String userID = fAuth.getCurrentUser().getUid();
+         DatabaseReference myRef = database.getReference(userID);
+         myRef.child("Latitude").setValue(location.getLatitude());
+         myRef.child("Longitude").setValue(location.getLongitude());
+     }
         txtLat = (TextView) findViewById(R.id.location);
         txtLat.setText("Latitude:" + location.getLatitude() + ",\nLongitude:" + location.getLongitude());
     }
