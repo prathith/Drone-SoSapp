@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -18,10 +19,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+
 
 
 
@@ -42,6 +46,7 @@ public class MainActivity extends  Activity implements LocationListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar mToolbar;
+    private ActionBarDrawerToggle t;
 
     protected LocationManager locationManager;
     protected LocationListener locationListener;
@@ -59,10 +64,21 @@ public class MainActivity extends  Activity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Getting the edittext and button instance
+                drawerLayout=findViewById(R.id.drawer_layout);
+        navigationView=findViewById(R.id.nav);
         txtLat = (TextView) findViewById(R.id.location);
-        mToolbar=findViewById(R.id.Toolbar);
+                            mToolbar=findViewById(R.id.Toolbar);
+
         setActionBar(mToolbar);
         getActionBar().setDisplayShowTitleEnabled(false);
+        t = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(t);
+        t.syncState();
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -259,6 +275,15 @@ public class MainActivity extends  Activity implements LocationListener {
         MenuInflater inflater= getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
