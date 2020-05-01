@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.app.Activity;
@@ -15,10 +16,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
+
+
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,6 +39,10 @@ public class MainActivity extends  Activity implements LocationListener {
     Button button4;
     Button button5;
     Button button6;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar mToolbar;
+
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     protected Context context;
@@ -49,6 +60,9 @@ public class MainActivity extends  Activity implements LocationListener {
         setContentView(R.layout.activity_main);
         //Getting the edittext and button instance
         txtLat = (TextView) findViewById(R.id.location);
+        mToolbar=findViewById(R.id.Toolbar);
+        setActionBar(mToolbar);
+        getActionBar().setDisplayShowTitleEnabled(false);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -238,6 +252,13 @@ public class MainActivity extends  Activity implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
         Log.d("Latitude","disable");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater= getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
