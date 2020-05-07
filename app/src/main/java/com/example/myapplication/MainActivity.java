@@ -1,13 +1,18 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -17,12 +22,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 
@@ -33,9 +40,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.util.List;
 
 
-public class MainActivity extends  Activity implements LocationListener {
+public class MainActivity extends  Activity implements LocationListener, NavigationView.OnNavigationItemSelectedListener {
     FirebaseAuth fAuth;
     Button button1;
     Button button2;
@@ -57,11 +68,30 @@ public class MainActivity extends  Activity implements LocationListener {
     protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
 
+    private int STORAGE_PERMISSION_CODE=1;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(MainActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+
+        };
         super.onCreate(savedInstanceState);
+        TedPermission.with(MainActivity.this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.CALL_PHONE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION)
+                .check();
         setContentView(R.layout.activity_main);
         //Getting the edittext and button instance
                 drawerLayout=findViewById(R.id.drawer_layout);
@@ -70,11 +100,13 @@ public class MainActivity extends  Activity implements LocationListener {
                             mToolbar=findViewById(R.id.Toolbar);
 
         setActionBar(mToolbar);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        getActionBar().setDisplayShowTitleEnabled(true);
+
         t = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(t);
         t.syncState();
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
 
@@ -90,7 +122,11 @@ public class MainActivity extends  Activity implements LocationListener {
             // for Activity#requestPermissions for more details.
 
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        else
+        {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        }
+
 
         button1 = (Button) findViewById(R.id.pol);
         button2 = (Button) findViewById(R.id.amb);
@@ -217,6 +253,8 @@ public class MainActivity extends  Activity implements LocationListener {
 
         });
 
+
+
         button4.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -252,6 +290,8 @@ public class MainActivity extends  Activity implements LocationListener {
 
 */
     }
+
+
     @Override
     public void onLocationChanged(Location location) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -285,6 +325,17 @@ public class MainActivity extends  Activity implements LocationListener {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public void onProviderEnabled(String provider) {
@@ -296,4 +347,9 @@ public class MainActivity extends  Activity implements LocationListener {
         Log.d("Latitude","status");
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return true;
+    }
 }

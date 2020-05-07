@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<group android:checkableBehavior="single">
+
     <item android:id="@+id/nav_home" android:title="Home" android:icon="@drawable/home"/>
     <item android:id="@+id/nav_medical" android:title="Medical Details" android:icon="@drawable/ic_local_hospital_black_24dp"/>
     <item android:id="@+id/nav_emergency" android:title="Emergency Contacts" android:icon="@drawable/ic_contact_phone_black_24dp"/>
     <item android:id="@+id/nav_logout" android:title="Logout" android:icon="@drawable/ic_reply_black_24dp"/>
     <item android:id="@+id/nav_info" android:title="About us" android:icon="@drawable/ic_info_black_24dp"/>
-</group>
-    <group android:checkableBehavior="single">
-         </group>
+
+
 </menu>
