@@ -102,12 +102,16 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
         setActionBar(mToolbar);
         getActionBar().setDisplayShowTitleEnabled(true);
 
+
+
+        navigationView.bringToFront();;
         t = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(t);
         t.syncState();
         getActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setCheckedItem(R.id.nav_home);
 
 
 
@@ -350,6 +354,36 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.nav_home:
+                break;
+            case R.id.nav_medical:
+                    Intent intent =new Intent(MainActivity.this,Medical_Details.class);
+                    startActivity(intent);
+                    break;
+            case R.id.nav_emergency:
+                intent =new Intent(MainActivity.this,Emergency_Contacts.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                String userID = fAuth.getCurrentUser().getUid();
+                DatabaseReference myRef = database.getReference(userID);
+                myRef.child("Status").setValue("healthy");
+                FirebaseAuth.getInstance().signOut();//logout
+                startActivity(new Intent(getApplicationContext(),login.class));
+                finish();
+                break;
+            case R.id.nav_info:intent =new Intent(MainActivity.this,info.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_profile:
+                intent =new Intent(MainActivity.this,Profile.class);
+                startActivity(intent);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
