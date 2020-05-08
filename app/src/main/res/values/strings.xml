@@ -2,4 +2,11 @@
     <string name="app_name">SOS EMERGENCY DRONE </string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="aboutus">
+        <br>This app is the module of the solution we have devised. </br>
+       <br> At the incident of patient’s emergency ,when the SOS button in the app is pressed.</br>
+        <br>The SOS signal containing the victim’s GPS coordinates is sent to the Firebase Server which is retrieved by the drone.</br>
+        <br>The drone after receiving the SOS signal flies towards the victim’s coordinates with medical  supplies . This app should be installed in the victim’s mobile phone and should be used only  in the case of emergency.</br>
+    </string>
 </resources>

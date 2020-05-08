@@ -15,12 +15,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.location.Geocoder;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -43,7 +45,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends  Activity implements LocationListener, NavigationView.OnNavigationItemSelectedListener {
@@ -138,16 +142,16 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
         button4 = (Button) findViewById(R.id.send);
         //Button login_btn = findViewById(R.id.log_btn);
        // Button register_btn = findViewById(R.id.res_btn);
-        Button logout_btn = findViewById(R.id.logout);
+        //Button logout_btn = findViewById(R.id.logout);
         fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser() != null){
             //login_btn.setVisibility(View.GONE);
             //register_btn.setVisibility((View.GONE));
-            logout_btn.setVisibility(View.VISIBLE);
+          //  logout_btn.setVisibility(View.VISIBLE);
         }
         else
         {
-            logout_btn.setVisibility(View.GONE);
+            //logout_btn.setVisibility(View.GONE);
             startActivity(new Intent(getApplicationContext(),login.class));
             finish();
         }
@@ -156,7 +160,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
                 //address for the address bar
 
         //Performing action on button click
-        logout_btn.setOnClickListener(new View.OnClickListener() {
+   /*     logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -168,12 +172,12 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
                 finish();
 
             }
-        });
+        });*/
         button1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-
+                Toast.makeText(getApplicationContext(),"Calling Police",Toast.LENGTH_SHORT).show();
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:100"));
                 if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -195,7 +199,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
             @Override
             public void onClick(View arg0) {
-
+                Toast.makeText(getApplicationContext(),"Calling Ambulance",Toast.LENGTH_SHORT).show();
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:108"));
                 if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -205,7 +209,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
                     //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
-                    // for Activity#requestPermissions for more details.
+                    // for Activity#requestPermissions for `more details.
                     return;
                 }
                 startActivity(callIntent);
@@ -217,7 +221,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
             @Override
             public void onClick(View arg0) {
-
+                Toast.makeText(getApplicationContext(),"Calling Fire Emergency",Toast.LENGTH_SHORT).show();
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:101"));
                 if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -239,7 +243,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
             @Override
             public void onClick(View arg0) {
-
+                Toast.makeText(getApplicationContext(),"Calling Fire Emergency",Toast.LENGTH_SHORT).show();
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:101"));
                 if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -263,6 +267,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
             @Override
             public void onClick(View arg0) {
+                Toast.makeText(getApplicationContext(),"SOS for Drone",Toast.LENGTH_SHORT).show();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 String userID = fAuth.getCurrentUser().getUid();
                 DatabaseReference myRef = database.getReference(userID);
@@ -306,7 +311,29 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
          myRef.child("Longitude").setValue(location.getLongitude());
      }
         txtLat = (TextView) findViewById(R.id.location);
-        txtLat.setText("Latitude:" + location.getLatitude() + ",\nLongitude:" + location.getLongitude());
+        //txtLat.setText("Latitude:" + location.getLatitude() + ",\nLongitude:" + location.getLongitude());
+        Double latitude=location.getLatitude();
+     Double longitude=location.getLongitude();
+
+        Geocoder geocoder;
+        List<Address> addresses = null;
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+        }
+
+        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String country = addresses.get(0).getCountryName();
+        String postalCode = addresses.get(0).getPostalCode();
+        //String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+        String r= address;
+        //r=r+state+country+postalCode+;
+        txtLat.setText(r);
     }
 
     @Override
@@ -350,6 +377,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
     public void onStatusChanged(String provider, int status, Bundle extras) {
         Log.d("Latitude","status");
     }
+
 
 
     @Override

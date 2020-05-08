@@ -9,7 +9,7 @@
             android:fitsSystemWindows="true"
                 tools:openDrawer="start">
 
-  <com.google.android.material.navigation.NavigationView
+<com.google.android.material.navigation.NavigationView
         android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,9 +33,11 @@
             android:layout_marginTop="274dp"
             android:layout_marginEnd="285dp"
             android:layout_marginBottom="409dp"
-            android:background="@android:color/holo_blue_light"
+            android:background="@drawable/round_rectangle"
             android:shadowColor="#00131212"
             android:text="Police"
+            android:textColor="@color/theme1"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +73,7 @@
             android:layout_marginEnd="68dp"
             android:layout_marginBottom="444dp"
             android:text="TextView"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -86,8 +89,12 @@
             android:layout_marginTop="274dp"
             android:layout_marginEnd="152dp"
             android:layout_marginBottom="409dp"
-            android:background="@android:color/holo_green_dark"
+            android:background="@drawable/round_rectangle"
+            android:foregroundTint="#2B2B2B"
+            android:foregroundTintMode="multiply"
             android:text="AMBULANCE"
+            android:textColor="@color/theme1"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,12 +106,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="289dp"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="274dp"
             android:layout_marginEnd="34dp"
-            android:layout_marginBottom="413dp"
-            android:background="@android:color/holo_red_light"
+            android:layout_marginBottom="409dp"
+            android:background="@drawable/round_rectangle"
 
             android:text="FIRE"
+            android:textColor="@color/theme1"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,16 +121,23 @@
 
         <Button
             android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="151dp"
-            android:layout_marginTop="350dp"
-            android:layout_marginEnd="159dp"
-            android:layout_marginBottom="333dp"
-            android:text="DRONE-SOS"
-
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="331dp"
+            android:layout_marginEnd="144dp"
+            android:layout_marginBottom="229dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="#DA9971"
+            android:backgroundTintMode="src_over"
+            android:foregroundTint="#F15F06"
+            android:foregroundTintMode="src_over"
+            android:text="DRONE SOS"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,6 +155,25 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="126dp"
+            android:layout_marginTop="464dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginBottom="126dp"
+            android:background="@drawable/round_rectangle"
+            android:text="Hospitals"
+            android:textColor="@color/theme1"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!--    <Button
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,7 +187,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="?attr/materialButtonOutlinedStyle"
-            />
+            /> -->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
