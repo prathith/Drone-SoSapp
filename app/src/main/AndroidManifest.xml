@@ -37,12 +37,16 @@
 
         <activity
             android:name=".MapsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".info"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".Profile" />
-        <activity android:name=".Emergency_Contacts" />
-        <activity android:name=".Medical_Details" />
+        <activity android:name=".Profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Emergency_Contacts"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Medical_Details"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
