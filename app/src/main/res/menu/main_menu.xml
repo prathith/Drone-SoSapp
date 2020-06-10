@@ -40,10 +40,6 @@
         <item android:title="Communitcate">
             <menu>
                 <item
-                    android:id="@+id/Share"
-                    android:icon="@drawable/ic_share_black_24dp"
-                    android:title="Share" />
-                <item
                     android:id="@+id/nav_info"
                     android:icon="@drawable/ic_info_black_24dp"
                     android:title="About us" />

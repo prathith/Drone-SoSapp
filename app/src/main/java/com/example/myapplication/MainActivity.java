@@ -140,6 +140,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
         button2 = (Button) findViewById(R.id.amb);
         button3 = (Button) findViewById(R.id.fire);
         button4 = (Button) findViewById(R.id.send);
+
         //Button login_btn = findViewById(R.id.log_btn);
        // Button register_btn = findViewById(R.id.res_btn);
         //Button logout_btn = findViewById(R.id.logout);
@@ -276,17 +277,9 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
         });
 
+
+        
 /*
-        button5.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(),login.class);
-                startActivityForResult(myIntent,0);
-
-
-            }
-        });
-
         button6.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
