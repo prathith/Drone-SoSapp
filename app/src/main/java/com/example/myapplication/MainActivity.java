@@ -40,8 +40,11 @@ import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -96,6 +99,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
                 .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
                 .setPermissions(Manifest.permission.CALL_PHONE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION)
                 .check();
+
         setContentView(R.layout.activity_main);
         //Getting the edittext and button instance
                 drawerLayout=findViewById(R.id.drawer_layout);
@@ -262,8 +266,6 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
         });
 
-
-
         button4.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -380,9 +382,13 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
             case R.id.nav_home:
                 break;
             case R.id.nav_medical:
-                    Intent intent =new Intent(MainActivity.this,Medical_Details.class);
+                    Intent intent =new Intent(MainActivity.this,Medical_Records.class);
                     startActivity(intent);
                     break;
+            case R.id.nav_medical_view:
+                intent =new Intent(MainActivity.this,view_records.class);
+                startActivity(intent);
+                break;
             case R.id.nav_emergency:
                 intent =new Intent(MainActivity.this,Emergency_Contacts.class);
                 startActivity(intent);

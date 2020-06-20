@@ -9,4 +9,14 @@
         <br>The SOS signal containing the victim’s GPS coordinates is sent to the Firebase Server which is retrieved by the drone.</br>
         <br>The drone after receiving the SOS signal flies towards the victim’s coordinates with medical  supplies . This app should be installed in the victim’s mobile phone and should be used only  in the case of emergency.</br>
     </string>
+    <string name="age" translatable="true"><font size="10">Age</font></string>
+    <string name="bloodTypeBody">Blood Type</string>
+    <string name="your_age" translatable="true"><font size="20">Age</font></string>
+    <string name="bloodType1">A+</string>
+    <string name="bloodType2">A-</string>
+    <string name="bloodType3">B+</string>
+    <string name="bloodType4">B-</string>
+    <string name="bloodType5">AB+</string>
+    <string name="bloodType6">O+</string>
+    <string name="bloodType7">O-ve</string>
 </resources>
