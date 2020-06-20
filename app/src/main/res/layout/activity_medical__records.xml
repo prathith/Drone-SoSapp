@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Please Enter Medical Details"
+            android:textColor="#8B4513"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="95dp"
+            android:background="@drawable/et_custom"
+            android:hint="Enter Your Age" />
+
+        <EditText
+            android:id="@+id/height"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="95dp"
+            android:background="@drawable/et_custom"
+            android:hint="Enter Your Height" />
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="95dp"
+            android:background="@drawable/et_custom"
+            android:hint= "Enter Your Weight" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Your Blood Type:"
+            android:layout_marginLeft="95dp"
+            android:textColor="#8B4513"
+            android:layout_marginTop="25dp"
+            android:textSize="15dp"/>
+        <Spinner
+            android:id="@+id/SpinnerBloodType"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:layout_width="150dp"
+            android:prompt="@string/bloodTypeBody"
+            android:entries="@array/bloodTypeList">
+        </Spinner>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What Type of Blood Pressure?"
+            android:layout_marginLeft="95dp"
+            android:textColor="#8B4513"
+            android:layout_marginTop="15dp"
+            android:textSize="15dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bloodPressureGroup">
+
+            <RadioButton
+                android:id="@+id/radioBp1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="95dp"
+                android:text="High Blood Pressure "
+                android:checked="false"
+                android:textSize="15dp" />
+
+            <RadioButton
+                android:id="@+id/radioBp2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="95dp"
+                android:text="Normal"
+                android:checked="true"
+                android:textSize="15dp" />
+            <RadioButton
+                android:id="@+id/radioBp3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Low Blood Pressure "
+                android:layout_marginLeft="95dp"
+                android:checked="false"
+                android:textSize="15dp" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do You Have Diabetes?"
+            android:layout_marginLeft="95dp"
+            android:textColor="#8B4513"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/diabetesgroup">
+
+        <RadioButton
+            android:id="@+id/radioDia1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:layout_marginLeft="95dp"
+            android:checked="false"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/radioDia2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:text="No"
+            android:checked="true"
+            android:textSize="15dp" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do You Have Any Other Medical Conditions?"
+            android:textColor="#8B4513"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"/>
+        <EditText
+            android:id="@+id/EditTextFeedbackBody"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:layout_width="fill_parent">
+        </EditText>
+
+        <Button
+            android:id="@+id/medicalBtn"
+            android:layout_width="145dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="125dp"
+            android:foregroundTint="#2B2B2B"
+            android:foregroundTintMode="multiply"
+            android:text="Update"
+            android:textColor="@color/theme2"
+            android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>

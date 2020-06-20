@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mym.view_records">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medical Records"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:textColor="#8B4513"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/vProfile_image"
+        android:layout_width="139dp"
+        android:layout_height="131dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/profile"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/vName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="10dp"
+        android:text="Poppu G"
+        android:textColor="#8B4513"
+        android:textSize="30sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Age:"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/vAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="Please do Update"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginLeft="20dp"
+            android:text="Height:"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/vheight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Please do update"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginLeft="20dp"
+            android:text="Weight:"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/vWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Please do update"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:layout_marginLeft="20dp"
+        android:text="Blood Type:"
+        android:textColor="#8B4513"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/vBloodtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Please do update"
+        android:textColor="#8B4513"
+        android:textSize="20sp" />
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginLeft="20dp"
+            android:text="Blood Pressure:"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/vBp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="please do update"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_marginLeft="20dp"
+            android:text="Diabetes"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/vDia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Please do update"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="20dp"
+            android:text="Medical Conditions:"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/vConditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Please do update"
+            android:textColor="#8B4513"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/medicalViewBtn"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="125dp"
+        android:foregroundTint="#2B2B2B"
+        android:foregroundTintMode="multiply"
+        android:text="Update"
+        android:textColor="@color/theme2"
+        android:textSize="12sp" />
+
+
+</LinearLayout>
+</ScrollView>

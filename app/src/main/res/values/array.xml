@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bloodTypeList">
+        <item>@string/bloodType1</item>
+        <item>@string/bloodType2</item>
+        <item>@string/bloodType3</item>
+        <item>@string/bloodType4</item>
+        <item>@string/bloodType5</item>
+        <item>@string/bloodType6</item>
+        <item>@string/bloodType7</item>
+    </string-array>
+</resources>
