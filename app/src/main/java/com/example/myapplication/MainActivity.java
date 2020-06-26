@@ -72,7 +72,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
     TextView txtLat;
     String lat;
     String provider;
-    protected String latitude, longitude;
+    Double latitude, longitude;
     protected boolean gps_enabled, network_enabled;
 
     private int STORAGE_PERMISSION_CODE=1;
@@ -275,6 +275,7 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
                 String userID = fAuth.getCurrentUser().getUid();
                 DatabaseReference myRef = database.getReference(userID);
                 myRef.child("Status").setValue("Emergency");
+                sendMail();
             }
 
         });
@@ -294,7 +295,35 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
 
 */
     }
+    //Double latitude;
 
+    private void sendMail() {
+        //Location location;
+        //Double latitude=location.getLatitude();
+        //Double longitude=location.getLongitude();
+
+        Geocoder geocoder;
+        List<Address> addresses = null;
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+        }
+
+        String address = addresses.get(0).getAddressLine(0);
+        String UserID=fAuth.getUid().toString() ;
+       // String recipient="dronesos71@gmail.com";
+        String subject="SOS EMERGENCY FOR DRONE FOR USER "+UserID+" at "+address;
+        String message="USER "+UserID+" need a first medical drone for emergency at location "+latitude+","+longitude;
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL,new String[]{"dronesos71@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose an email client"));
+    }
 
     @Override
     public void onLocationChanged(Location location) {
@@ -307,8 +336,8 @@ public class MainActivity extends  Activity implements LocationListener, Navigat
      }
         txtLat = (TextView) findViewById(R.id.location);
         //txtLat.setText("Latitude:" + location.getLatitude() + ",\nLongitude:" + location.getLongitude());
-        Double latitude=location.getLatitude();
-     Double longitude=location.getLongitude();
+        latitude=location.getLatitude();
+        longitude=location.getLongitude();
 
         Geocoder geocoder;
         List<Address> addresses = null;

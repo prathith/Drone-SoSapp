@@ -41,6 +41,7 @@
 
         <activity android:name=".info"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <activity android:name=".Profile"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".Emergency_Contacts"
